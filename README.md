@@ -5,7 +5,9 @@ A JavaScript plugin for recording in the web page throug user's microphone by We
 ### 1 准备
 实例化的时候会执行初始化：
 
+```
 var rec = new mRecorder;
+```
 
 初始化的含义是指：
 
