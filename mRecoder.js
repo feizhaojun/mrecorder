@@ -1,7 +1,7 @@
 var mRecorder = function(){
   // 处理基础 API 兼容性
   window.URL = window.URL || window.webkitURL;
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  window.AudioContext = window.AudioContext || window.webkitAudioContext || {};
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   // AudioContext 支持C35、Edge、F25、O22，C10、O15、S6需要webkit前缀。
 
@@ -183,7 +183,7 @@ var mRecorder = function(){
   // C21、O18 需要webkit前缀
   // F17需要moz前缀
   // IE S不支持
-  if (navigator.mediaDevices.getUserMedia) {
+  if (navigator.mediaDevices.getUserMedia && AudioContext) {
     navigator.mediaDevices.getUserMedia({
       audio: true
     }).then(function(stream) {
@@ -191,7 +191,7 @@ var mRecorder = function(){
     }).catch(function(err) {
       _log(err.name || err.message,1);
     });
-  } else if (navigator.getUserMedia) {
+  } else if (navigator.getUserMedia && AudioContext) {
     navigator.getUserMedia({
       audio: true
     }, function (stream) {
