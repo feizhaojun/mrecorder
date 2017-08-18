@@ -1,7 +1,7 @@
 var mRecorder = function(){
   // 处理基础 API 兼容性
   window.URL = window.URL || window.webkitURL;
-  window.AudioContext = window.AudioContext || window.webkitAudioContext || {};
+  window.AudioContext = window.AudioContext || window.webkitAudioContext || function(){};
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   // AudioContext 支持C35、Edge、F25、O22，C10、O15、S6需要webkit前缀。
 
