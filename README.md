@@ -4,8 +4,11 @@ A JavaScript plugin for recording in the web page throug user's microphone by We
 # Use
 ### 1 准备
 实例化的时候会执行初始化：
+
 var rec = new mRecorder;
+
 初始化的含义是指：
+
 通过getUserMedia接口获取用户媒体设备权限，用户需要在初始化的时候授权网页允许访问麦克风。
 
 ### 2 录音（包括重新开始录音）
