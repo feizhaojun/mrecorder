@@ -1,6 +1,8 @@
 # mRecorder
 A JavaScript plugin for recording in the web page throug user's microphone by Web Audio API, AudioRTC etc.
 
+适用于 Chrome 21+、IE Edge、Firefox 25+、Opera 15+。
+
 # Use
 ### 1 准备
 实例化的时候会执行初始化：
