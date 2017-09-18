@@ -183,7 +183,7 @@ var mRecorder = function(){
   // C21、O18 需要webkit前缀
   // F17需要moz前缀
   // IE S不支持
-  if (navigator.mediaDevices.getUserMedia && AudioContext) {
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && AudioContext) {
     navigator.mediaDevices.getUserMedia({
       audio: true
     }).then(function(stream) {
