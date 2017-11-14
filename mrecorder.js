@@ -1,4 +1,6 @@
-var mRecorder = function(){
+var mRecorder = function(opt){
+  var opt = opt ? opt : {};
+  opt.mediaType = opt.mediaType || 'wav';
   // 处理基础 API 兼容性
   window.URL = window.URL || window.webkitURL;
   window.AudioContext = window.AudioContext || window.webkitAudioContext || function(){};
@@ -109,7 +111,7 @@ var mRecorder = function(){
         }
       }
        
-      return new Blob([data], { type: 'audio/wav' });
+      return new Blob([data], { type: 'audio/' + (opt.mediaType || 'wav') });
     }
   };
 
@@ -188,6 +190,7 @@ var mRecorder = function(){
       audio: true
     }).then(function(stream) {
       init(stream);
+      opt.callback ? opt.callback() : '';
     }).catch(function(err) {
       _log(err.name || err.message,1);
     });
@@ -196,6 +199,7 @@ var mRecorder = function(){
       audio: true
     }, function (stream) {
       init(stream);
+      opt.callback ? opt.callback() : '';
     }, function (err) {
       _log(err.name || err.message,1);
     });

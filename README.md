@@ -8,7 +8,10 @@ A JavaScript plugin for recording in the web page throug user's microphone by We
 实例化的时候会执行初始化：
 
 ```
-var rec = new mRecorder;
+var rec = new mRecorder({
+    mediaType:'wav',
+    callback:function(){}
+});
 ```
 
 初始化的含义是指：
@@ -33,5 +36,22 @@ rec.getURL();
 rec.upload('url',callback);
 
 ==暂时不提供暂停和继续录音功能==
+
+# 重要更新
+
+因为很多页面场景不需要打开页面的时候就 new mRecorder()，而是需要在点击按钮的时候初始化，并开始录音（rec.start()），但是因为JS的异步原理，可能执行 new mRecorder() 的时候不能立即初始化start方法，所以会出现rec.start不是一个函数。
+
+本次更新允许在初始化的时候传入一个回调函数，如下：
+```
+$('.start-record-btn').on('click',function(){
+    var rec = new mRecorder({
+        callback:function(){
+            rec.start();
+            window.rec = rec;
+        }
+    });
+});
+
+```
 
 [联系作者](https://feizhaojun.com/contact.html)

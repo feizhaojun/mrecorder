@@ -18,15 +18,21 @@
  
  
 <script>
-var rec = new mRecorder();
-function start() {
-  rec.start();
+
+function start(){
+  var rec = new mRecorder({
+    callback:function(){
+        rec.start();
+        window.rec = rec;
+    }
+  });
 }
 function stop() {
   rec.stop();
 }
 function getURL() {
   document.querySelector('audio').src = rec.getURL();
+  document.getElementById('download').href = rec.getURL();
 }
 function upload() {
   rec.upload('upload.php', function (state, e) {
